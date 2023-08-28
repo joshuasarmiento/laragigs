@@ -14,22 +14,17 @@ use App\Models\Listing;
 |
 */
 
-Route::get('/', function () {
-    return view('homepage');
-});
-
-
 // All listing
-Route::get('/listings', function () {
+Route::get('/', function () {
     return view('listings', [
         'heading' => 'Latest Title',
-        'listings' => Listing::allData()
+        'listings' => Listing::all()
     ]);
 });
 
 // Single Listing
-Route::get('/listings/{id}', function ($id) {
+Route::get('/listings/{listing}', function (Listing $list) {
     return view('listing', [
-        'listing' => Listing::findData($id)
+        'listing' => $list
     ]);
 });
